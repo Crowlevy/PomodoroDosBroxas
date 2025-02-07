@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         :root {
             --primary-color: #6a0dad;
             --secondary-color: #8a2be2;
-            --background-color:#1c1b22;
+            --background-color: #1c1b22;
             --light-color: #bfbfff;
             --dark-accent: #292943;
             --hover-accent: #4a4a8a;
@@ -109,6 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .register-btn:hover{
             background-color: var(--primary-color);
             transition: ease-in 0.2s ;
+        }
+
+        @media (max-width: 584px){
+            .logo-text{
+                display: none;
+            }
         }
 
         .hero {
@@ -361,7 +367,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <nav class="nav">
         <a href="index.php" class="logo">
             <i class="fas fa-clock"></i>
-            Pomodoro Dos Broxas
+            <span class="logo-text">Pomodoro Dos Broxas</span>
         </a>
         <div class="nav-buttons">
             <a href="./p/login.php" class="btn login-btn">Login</a>
