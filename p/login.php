@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         :root {
             --primary-color: #6a0dad;
             --secondary-color: #8a2be2;
-            --background-color: #1e1e2f;
+            --background-color: #1c1b22;
             --light-color: #bfbfff;
             --dark-accent: #292943;
             --hover-accent: #4a4a8a;
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         body {
-            background: var(--background-color);
+            background-image: radial-gradient(#1c1b22,rgb(28, 27, 34));
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
@@ -62,9 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--light-color);
+            backdrop-filter: blur(8px);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -79,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: bold;
             color: var(--primary-color);
             text-decoration: none;
+            color: #d9d9d9;
         }
 
         .login-container {
@@ -91,13 +91,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .login-box {
             margin-top:50px;
-            background: var(--dark-accent);
+
             padding: 2.5rem;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
             width: 100%;
             max-width: 500px;
             text-align: center;
+
+            
         }
 
         .login-header {
@@ -111,11 +113,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             gap: 0.5rem;
             color: var(--text-color);
             font-size: 2rem;
-            margin-bottom: 1rem;
+
         }
 
         .login-header p {
-            color: var(--text-color);
+            color: #d9d9d9;
         }
 
         .form-group {
@@ -126,17 +128,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--text-color);
+            color:rgb(255, 255, 255);
             font-weight: 500;
+            font-size: 0.9em;
         }
 
         .form-group input {
             width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
+            padding: 10px;
+
+            border-radius: 4px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            color: #e5e5e5;
+
+            border: solid 1px rgb(102, 102, 102);
+            background-color: transparent;
         }
 
         .form-group input:focus {
@@ -147,20 +153,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .submit-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 12px;
             border: none;
-            border-radius: 8px;
-            background: var(--primary-color);
+            border-radius: 4px;
+            background: #8a2be2;
             color: white;
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 0.8em;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1em;
         }
 
         .submit-btn:hover {
-            background:rgb(14, 141, 226);
-            transition: background 0.7s ease;
+            background:rgb(111, 38, 180);
+            transition: background 0.7s ease-in;
             transform: translateY(-1px);
         }
 
@@ -175,11 +185,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         .register-link {
             margin-top: 1.5rem;
-            color: #666;
+            color:#c9c9c9;
         }
 
         .register-link a {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             text-decoration: none;
             font-weight: 500;
         }
@@ -193,15 +203,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 padding: 2rem;
             }
         }
+
+        .dot{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color:rgba(164, 87, 236, 0.09);
+            border-radius: 50%;
+            filter: blur(23px);
+            box-shadow: 0 4px 100px rgba(161, 31, 242, 0.3);
+            z-index: -1;
+        }
+
+        .form-box{
+            border: solid 1px rgba(80, 80, 80, 0.75);
+            padding: 20px;
+            border-radius: 12px;
+            background-color:rgba(55, 50, 57, 0.63);
+            
+        }
     </style>
 </head>
 <body>
     <nav class="nav">
-        <a href="index.php" class="logo">
+        <a href="../index.php" class="logo">
             <i class="fas fa-clock"></i>
             Pomodoro Dos Broxas
         </a>
     </nav>
+
+    <div class="dot"></div>
 
     <div class="login-container">
         <div class="login-box">
@@ -217,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="">
+            <form method="POST" action="" class="form-box">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required 
@@ -229,7 +263,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" id="password" name="password" required>
                 </div>
 
-                <button type="submit" class="submit-btn">Logar</button>
+                <button type="submit" class="submit-btn">Logar <i class="fa-solid fa-arrow-right"></i></button>
             </form>
 
             <div class="register-link">
